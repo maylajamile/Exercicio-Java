@@ -18,7 +18,15 @@ public class LeitorDeLinks implements Runnable {
 		List<HtmlAnchor> links = arquivo.getAnchors();
 		for (HtmlAnchor link : links) {
 		   String href = link.getHrefAttribute();
-		   System.out.println("Link: " + href);
+		   
+		   if(href.startsWith("https")){
+				GeradorDeCsv gesradorDeCsv = new GeradorDeCsv();
+				geradorDeCsv.listarUrlHttps(href);
+		   }else{
+			   //Criar outra Thread de Leitura
+		   }
+		   
+		   //System.out.println("Link: " + href);
 		}
 		
 	}
