@@ -13,7 +13,7 @@ public class Principal {
 	public static void main(String[] args) throws FailingHttpStatusCodeException, MalformedURLException, IOException {
 		
 		WebClient webClient = new WebClient(BrowserVersion.CHROME);
-		HtmlPage arquivo = webClient.getPage("https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:P%C3%A1gina_principal");
+		HtmlPage arquivo = webClient.getPage("https://pt.wikipedia.org/wiki/Java_(linguagem_de_programa%C3%A7%C3%A3o)");
 		webClient.close();
 		
 		Thread leitorDeLinks = new Thread(new LeitorDeLinks(arquivo));
