@@ -11,8 +11,8 @@ import com.opencsv.CSVWriter;
 
 public class ListagemAncora implements Runnable {
 
-	List<String> urlsAncora = new ArrayList<String>(); 
-	
+	List<String> urlsAncora = new ArrayList<String>();
+
 	public ListagemAncora(List<String> urlsAncora) {
 		this.urlsAncora = urlsAncora;
 	}
@@ -21,8 +21,20 @@ public class ListagemAncora implements Runnable {
 		Writer writer;
 
 		try {
-			writer = Files.newBufferedWriter(Paths.get("linkNaoSeguro.csv"));
-			CSVWriter csvWriter = new CSVWriter(writer);
+			writer = Files.newBufferedWriter(Paths.get("linkAncora.csv"));
+
+			CSVWriter csvWriter = new CSVWriter(writer, ';', 
+					CSVWriter.NO_QUOTE_CHARACTER,
+					CSVWriter.DEFAULT_ESCAPE_CHARACTER, 
+					CSVWriter.DEFAULT_LINE_END);
+			
+			for(String str: urlsAncora) {
+				writer.write(str);
+			}
+			
+			csvWriter.flush();
+			csvWriter.close();
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -16,8 +16,15 @@ public class Principal {
 		HtmlPage arquivo = webClient.getPage("https://pt.wikipedia.org/wiki/Java_(linguagem_de_programa%C3%A7%C3%A3o)");
 		webClient.close();
 		
-		Thread leitorDeLinks = new Thread(new LeitorDeLinks(arquivo));
+		Thread leitorDeLinks = new Thread();
 		leitorDeLinks.start();
+		LeitorDeLinks leitor = new LeitorDeLinks(arquivo);
+		
+		Thread escritaHttps = new Thread(new ListagemHttps(leitor.listarUrlsHttps()));
+		Thread escritaAncora = new Thread(new ListagemAncora(leitor.listarUrlsAncora()));
+
+		escritaHttps.start();
+		escritaAncora.start();		
 	}
 	
 }

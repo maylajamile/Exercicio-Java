@@ -22,7 +22,19 @@ public class ListagemHttps implements Runnable {
 
 		try {
 			writer = Files.newBufferedWriter(Paths.get("linkSeguro.csv"));
-			CSVWriter csvWriter = new CSVWriter(writer);
+
+			CSVWriter csvWriter = new CSVWriter(writer, ';', 
+					CSVWriter.NO_QUOTE_CHARACTER,
+					CSVWriter.DEFAULT_ESCAPE_CHARACTER, 
+					CSVWriter.DEFAULT_LINE_END);
+			
+			for(String str: urlsHttps) {
+				writer.write(str);
+			}
+			
+			csvWriter.flush();
+			csvWriter.close();
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
