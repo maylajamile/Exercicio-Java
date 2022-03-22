@@ -9,34 +9,36 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 public class LeitorDeLinks implements Runnable {
 
 	private HtmlPage arquivo;
-	private List<String> urlsHttps = new ArrayList<String>();
-	private List<String> urlsAncora = new ArrayList<String>();
 	
+	List<String> urlsHttps = new ArrayList<String>();
+	List<String> urlsAncora = new ArrayList<String>();
 	
 	public LeitorDeLinks(HtmlPage arquivo) {
 		this.arquivo = arquivo;
 	}
 	
-	@Override
+	public List<String> listarUrlsHttps(){
+		return urlsHttps;
+	}
+	
+	public List<String> listarUrlsAncora(){
+		return urlsAncora;
+	}
+
 	public void run() {
-		
+
 		List<HtmlAnchor> links = arquivo.getAnchors();
 		for (HtmlAnchor link : links) {
-			String href = link.getHrefAttribute();
-			
-			if(href.startsWith("https")){
+		   String href = link.getHrefAttribute();
+		   
+		   if(href.startsWith("https")){
 				urlsHttps.add(href);
-			}else{
-				urlsAncora.add(href);
-			}
+		   }else{
+			   	urlsAncora.add(href);
+		   }
+		   
 		}
 		
-		ListagemAncora listagemAncora = new ListagemAncora(urlsAncora);
-		Thread listagemDeLinksHttps = new Thread(listagemAncora);
-		listagemDeLinksHttps.start();
-		
-		ListagemHttps listagemHttps = new ListagemHttps(urlsHttps);
-		Thread listagemDeLinksAncora = new Thread(listagemHttps);
-		listagemDeLinksAncora.start();
 	}
+
 }
