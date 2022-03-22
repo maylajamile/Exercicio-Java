@@ -1,13 +1,10 @@
 package br.com.five;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.opencsv.CSVWriter;
 
 public class ListagemAncora implements Runnable {
 
@@ -17,29 +14,22 @@ public class ListagemAncora implements Runnable {
 		this.urlsAncora = urlsAncora;
 	}
 
+	@Override
 	public void run() {
-		Writer writer;
-
+        
+		BufferedWriter bw;
 		try {
-			writer = Files.newBufferedWriter(Paths.get("linkAncora.csv"));
-
-			CSVWriter csvWriter = new CSVWriter(writer, ';', 
-					CSVWriter.NO_QUOTE_CHARACTER,
-					CSVWriter.DEFAULT_ESCAPE_CHARACTER, 
-					CSVWriter.DEFAULT_LINE_END);
+			bw = new BufferedWriter(new FileWriter("linkAncora.csv"));
 			
-			for(String str: urlsAncora) {
-				writer.write(str);
+			for (String url : urlsAncora) {
+				bw.write(url);
+				bw.append(';');
+				bw.newLine();
 			}
 			
-			csvWriter.flush();
-			csvWriter.close();
-			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
 	}
 
 }

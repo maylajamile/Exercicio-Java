@@ -26,17 +26,19 @@ public class LeitorDeLinks implements Runnable {
 			
 			if(href.startsWith("https")){
 				urlsHttps.add(href);
+				System.out.println(href);
 			}else{
 				urlsAncora.add(href);
 			}
 		}
 		
+
 		ListagemAncora listagemAncora = new ListagemAncora(urlsAncora);
-		Thread listagemDeLinksHttps = new Thread(listagemAncora);
-		listagemDeLinksHttps.start();
+		Thread listagemDeLinksAncora = new Thread(listagemAncora);
+		listagemDeLinksAncora.start();
 		
 		ListagemHttps listagemHttps = new ListagemHttps(urlsHttps);
-		Thread listagemDeLinksAncora = new Thread(listagemHttps);
-		listagemDeLinksAncora.start();
+		Thread listagemDeLinksHttps = new Thread(listagemHttps);
+		listagemDeLinksHttps.start();
 	}
 }
