@@ -25,6 +25,7 @@ public class ListagemHttps implements Runnable {
 				bw.write(url);
 				bw.append(';');
 				bw.newLine();
+				bw.flush();
 			}
 			
 		} catch (IOException e) {

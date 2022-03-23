@@ -26,12 +26,10 @@ public class LeitorDeLinks implements Runnable {
 			
 			if(href.startsWith("https")){
 				urlsHttps.add(href);
-				System.out.println(href);
 			}else{
 				urlsAncora.add(href);
 			}
 		}
-		
 
 		ListagemAncora listagemAncora = new ListagemAncora(urlsAncora);
 		Thread listagemDeLinksAncora = new Thread(listagemAncora);
