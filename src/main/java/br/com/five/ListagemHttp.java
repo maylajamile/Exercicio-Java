@@ -9,33 +9,33 @@ import java.util.List;
 /*
  * Esta classe escreve os links listados no arquivo csv escolhido
  * 
- * @param {List<String>} urlsHttp receberá links âncora que seguirão para o arquivo .csv
+ * @param {List<String>} urlsHttp receberá links http que seguirão para o arquivo .csv
  * e os escreverá utilizando ";" como separador
  * 
  */
 
-public class ListagemAncora implements Runnable {
+public class ListagemHttp implements Runnable {
 
-	List<String> urlsAncora = new ArrayList<String>();
-
-	public ListagemAncora(List<String> urlsAncora) {
-		this.urlsAncora = urlsAncora;
+	List<String> urlsHttp = new ArrayList<String>(); 
+	
+	public ListagemHttp(List<String> urlsHttp) {
+		this.urlsHttp = urlsHttp;
 	}
-
+	
 	@Override
 	public void run() {
-        
 		
 		//Cria o biffered writer que escreverá as strings (links) no 
 		// arquivo csv separando-os por ";" e quebra uma linha
 		BufferedWriter bw;
 		try {
-			bw = new BufferedWriter(new FileWriter("linkAncora.csv"));
+			bw = new BufferedWriter(new FileWriter("linkSeguro.csv"));
 			
-			for (String url : urlsAncora) {
+			for (String url : urlsHttp) {
 				bw.write(url);
 				bw.append(';');
 				bw.newLine();
+				bw.flush();
 			}
 			
 		} catch (IOException e) {
