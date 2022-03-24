@@ -22,7 +22,7 @@ public class ListagemHttp implements Runnable {
 		this.urlsHttp = urlsHttp;
 	}
 	
-	@Override
+	
 	public void run() {
 		
 		//Cria o biffered writer que escreverá as strings (links) no 

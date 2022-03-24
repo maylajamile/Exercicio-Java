@@ -28,7 +28,7 @@ public class LeitorDeLinks implements Runnable {
 		this.arquivo = arquivo;
 	}
 	
-	@Override
+
 	public void run() {
 		
 		//Separa link por link e o adiciona na sua respectiva lista

@@ -22,7 +22,7 @@ public class ListagemAncora implements Runnable {
 		this.urlsAncora = urlsAncora;
 	}
 
-	@Override
+	
 	public void run() {
         
 		
@@ -36,6 +36,7 @@ public class ListagemAncora implements Runnable {
 				bw.write(url);
 				bw.append(';');
 				bw.newLine();
+				bw.flush();
 			}
 			
 		} catch (IOException e) {
