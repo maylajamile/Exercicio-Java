@@ -16,13 +16,14 @@ public class Principal {
 	public static void main(String[] args) throws FailingHttpStatusCodeException, MalformedURLException, IOException {
 		
 		System.out.println("Insira o site a ser processado:");
+		
 		try {
 			//Recebe o site a partir do console
 			Scanner scanner = new Scanner(System.in);
 			String siteUsuario = scanner.nextLine();
 			scanner.close();
 			
-			System.out.println("O site está sendo processado 🕗");
+			System.out.println("O site está sendo processado...");
 			
 			//Remove mensagens de erro relacionadas a css e javascript do htmlunit
 			java.util.logging.Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(java.util.logging.Level.OFF);
@@ -50,10 +51,5 @@ public class Principal {
 		} catch (MalformedURLException e) {
 			throw new RuntimeErrorException(null, "Site inválido");
 		}
-		
-		
-		
-		
 	}
-	
 }
