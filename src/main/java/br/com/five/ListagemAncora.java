@@ -36,8 +36,9 @@ public class ListagemAncora implements Runnable {
 				bw.write(url);
 				bw.append(';');
 				bw.newLine();
-				bw.flush();
 			}
+			
+			bw.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();

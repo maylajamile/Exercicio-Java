@@ -38,6 +38,8 @@ public class ListagemHttp implements Runnable {
 				bw.flush();
 			}
 			
+			bw.close();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
